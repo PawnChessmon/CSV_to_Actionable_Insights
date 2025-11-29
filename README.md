@@ -2,11 +2,32 @@
 
 A lightweight Nextflow pipeline showing how to transform a CSV-based cancer expression matrix into differential expression calls and actionable hits.
 
-## What it does
-- Normalizes raw counts with log2(CPM + 1) and maps gene IDs to symbols when an annotation table is provided.
-- Runs a simple Welch t-test between two conditions, reporting both p-value and BH-adjusted p-value.
-- Intersects significant genes with an actionable list.
-- Generates PCA, heatmap, volcano, and MA plots (up in red, down in blue, top 5 labeled by p-value).
+### TL;DR
+- **Input:**  
+  - Counts CSV (genes × samples, first column = `gene_id`)  
+  - Metadata CSV (`sample_id`, `condition` with exactly two conditions)  
+  - Actionable list CSV (`gene_id` + any extra annotations)  
+  - Optional annotations table (`gene_id`, `gene_symbol`) to remap IDs to symbols
+
+- **What the pipeline does:**  
+  1. Normalises counts to log2(CPM+1).  
+  2. Runs differential expression (Welch t-test) between the two conditions.  
+  3. Intersects significant genes with your actionable list.  
+  4. Writes summary stats and generates PCA, heatmap, volcano, and MA plots.
+
+- **Output:**  
+  - `preprocessed/normalized_counts.csv`  
+  - `differential_expression.csv`  
+  - `actionable_hits.csv`  
+  - `summary.json`  
+  - `plots/` (`pca_samples.png`, `heatmap_top_genes.png`, `volcano.png`, `ma_plot.png`)
+
+- **What Nextflow does here:**  
+  Nextflow just **glues the steps together and manages files**. It takes your inputs, runs the Python scripts in the right order (normalize → DE test → actionable filter → plots), passes the correct files between them, manages work directories, and lets you re-run the whole workflow with different inputs or profiles without manually chaining commands.
+::contentReference[oaicite:0]{index=0}
+
+
+
 
 ## Layout
 - `main.nf` – pipeline definition.
