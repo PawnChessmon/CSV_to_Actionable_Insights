@@ -1,0 +1,5 @@
+gene_id,drug_class,notes
+EGFR,EGFR inhibitors,Responsive to TKIs (erlotinib/gefitinib)
+BRAF,BRAF/MEK inhibitors,Targetable in RAF-driven tumors
+ALK,ALK inhibitors,Known fusion/overexpression target
+MYC,CDK inhibitors,Indirect targeting strategies
