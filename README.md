@@ -2,6 +2,32 @@
 
 A lightweight Nextflow pipeline showing how to transform a CSV-based cancer expression matrix into differential expression calls and actionable hits.
 
+### Workflow at a glance
+```mermaid
+flowchart TD
+  A["Counts CSV (gene × sample)"] --> B["Normalize: log2(CPM+1)"]
+  A2["Metadata CSV (sample_id, condition)"] --> B
+  B --> C["Differential Expression (Welch t-test)"]
+  C --> D["Actionable List CSV (gene_id + annotations)"]
+  D --> E["Intersect significant genes with actionable list"]
+  E --> F["Generate plots (PCA, heatmap, volcano, MA)"]
+  F --> G["Write outputs"]
+      
+  subgraph Outputs
+    G1["normalized_counts.csv"]
+    G2["differential_expression.csv"]
+    G3["actionable_hits.csv"]
+    G4["summary.json and plots/"]
+  end
+  
+  G --> G1
+  G --> G2
+  G --> G3
+  G --> G4
+
+```
+
+
 ### TL;DR
 - **Input:**  
   - Counts CSV (genes × samples, first column = `gene_id`)  
