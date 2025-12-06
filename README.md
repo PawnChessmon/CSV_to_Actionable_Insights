@@ -1,6 +1,6 @@
-# CSV to Actionable Insights (demo)
+# CSV to Actionable Insights
 
-A lightweight Nextflow pipeline showing how to transform a CSV-based cancer expression matrix into differential expression calls and actionable hits.
+A lightweight Nextflow pipeline showing how to transform a CSV-based expression matrix into differential expression calls and actionable hits.
 
 ### Workflow at a glance
 ```mermaid
@@ -32,7 +32,7 @@ flowchart TD
 - **Input:**  
   - Counts CSV (genes × samples, first column = `gene_id`)  
   - Metadata CSV (`sample_id`, `condition` with exactly two conditions)  
-  - Actionable list CSV (`gene_id` + any extra annotations)  
+  - Optional actionable list CSV (`gene_id` + any extra annotations)  
   - Optional annotations table (`gene_id`, `gene_symbol`) to remap IDs to symbols
 
 - **What the pipeline does:**  
@@ -99,7 +99,7 @@ nextflow run main.nf \
 Expected formats:
 - Counts: `gene_id` column (Ensembl or symbols) plus one column per sample.
 - Metadata: `sample_id,condition` with exactly two conditions (e.g., Tumor/Normal).
-- Actionable list: `gene_id` plus any annotation columns you like.
+- Optional actionable list: `gene_id` plus any annotation columns you like.
 - Optional annotations: table with `gene_id` and `gene_symbol` (common headers auto-detected).
 
 ## Notes
