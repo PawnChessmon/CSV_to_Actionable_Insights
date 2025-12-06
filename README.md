@@ -13,7 +13,7 @@ flowchart TD
   E --> F["Generate plots (PCA, heatmap, volcano, MA)"]
   F --> G["Write outputs"]
       
-  subgraph Outputs
+  subgraph Output
     G1["normalized_counts.csv"]
     G2["differential_expression.csv"]
     G3["actionable_hits.csv"]
