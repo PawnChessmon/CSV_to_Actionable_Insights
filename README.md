@@ -1,4 +1,4 @@
-# CSV to Actionable Insights
+# CSV to Actionable Insights (DEMO)
 
 A lightweight Nextflow pipeline showing how to transform a CSV-based expression matrix into differential expression calls and actionable hits.
 
